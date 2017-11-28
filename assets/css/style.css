@@ -5,3 +5,24 @@
 	min-height: 300px;
 	background-color: grey;
 }
+
+body{
+	background-color: lightgreen;
+}
+.container{
+	background-color: white;
+}
+#topTitle{
+	width:100%;
+	text-align: center;
+	font-size: 36px;
+	font-weight: bold;
+}
+
+#mapSideBar{
+	font-size: 26px;
+	border-width: 10px;
+	border:solid;
+
+
+}
