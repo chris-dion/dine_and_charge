@@ -15,4 +15,3 @@ var queryURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&
     messagingSenderId: "231709144176"
   };
   firebase.initializeApp(config);
-
