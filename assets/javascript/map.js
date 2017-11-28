@@ -1,4 +1,4 @@
-// global variables for opencharge api call...lat/long from google maps pin drop outputs to 6 decimal places
+// global variables with nominal Austin lat/long for opencharge api call...google maps pin drop outputs to 6 decimal places
 var lat = 30.287738;
 var long = -97.729001;
 // API doesn't need a key, current settings: max results=10, distance searched=10, units=miles, export to JSON
