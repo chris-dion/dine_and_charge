@@ -1,0 +1,160 @@
+{
+"ID": 41952,
+"UUID": "48067C51-63AC-47D5-AD0E-D9C95DD00E42",
+"ParentChargePointID": null,
+"DataProviderID": 2,
+"DataProvider": {
+"WebsiteURL": "http://www.afdc.energy.gov/",
+"Comments": null,
+"DataProviderStatusType": {
+"IsProviderEnabled": true,
+"ID": 20,
+"Title": "Automated Import"
+},
+"IsRestrictedEdit": false,
+"IsOpenDataLicensed": true,
+"IsApprovedImport": true,
+"License": "This data is provided by the National Renewable Energy Laboratory (\"NREL\"), which is operated by the Alliance for Sustainable Energy, LLC (\"Alliance\"), for the U.S. Department of Energy (\"DOE\"), and may be used for any purpose whatsoever.",
+"DateLastImported": "2017-10-19T02:20:14.257Z",
+"ID": 2,
+"Title": "afdc.energy.gov"
+},
+"DataProvidersReference": "65693",
+"OperatorID": 5,
+"OperatorInfo": {
+"WebsiteURL": "http://www.chargepoint.net/",
+"Comments": null,
+"PhonePrimaryContact": "1-888-758-4389",
+"PhoneSecondaryContact": null,
+"IsPrivateIndividual": false,
+"AddressInfo": null,
+"BookingURL": null,
+"ContactEmail": "support@coulombtech.com",
+"FaultReportEmail": "support@coulombtech.com",
+"IsRestrictedEdit": null,
+"ID": 5,
+"Title": "ChargePoint (Coulomb Technologies)"
+},
+"OperatorsReference": null,
+"UsageTypeID": 1,
+"UsageType": {
+"IsPayAtLocation": null,
+"IsMembershipRequired": null,
+"IsAccessKeyRequired": null,
+"ID": 1,
+"Title": "Public"
+},
+"UsageCost": null,
+"AddressInfo": {
+"ID": 42298,
+"Title": "PLUGNEVERYWHERE",
+"AddressLine1": "2420 San Antonio St",
+"AddressLine2": null,
+"Town": "Austin",
+"StateOrProvince": "TX",
+"Postcode": "78705",
+"CountryID": 2,
+"Country": {
+"ISOCode": "US",
+"ContinentCode": "NA",
+"ID": 2,
+"Title": "United States"
+},
+"Latitude": 30.288584,
+"Longitude": -97.742283,
+"ContactTelephone1": "888-758-4389",
+"ContactTelephone2": null,
+"ContactEmail": null,
+"AccessComments": "24 hours daily",
+"RelatedURL": "http://www.chargepoint.com/",
+"Distance": 0.7946335578381875,
+"DistanceUnit": 2
+},
+"NumberOfPoints": null,
+"GeneralComments": null,
+"DatePlanned": null,
+"DateLastConfirmed": null,
+"StatusTypeID": null,
+"StatusType": null,
+"DateLastStatusUpdate": "2017-10-19T02:06:00Z",
+"DataQualityLevel": 3,
+"DateCreated": "2015-02-23T02:09:00Z",
+"SubmissionStatusTypeID": 100,
+"SubmissionStatus": {
+"IsLive": true,
+"ID": 100,
+"Title": "Imported and Published"
+},
+"UserComments": null,
+"PercentageSimilarity": null,
+"Connections": [
+{
+"ID": 50320,
+"ConnectionTypeID": 1,
+"ConnectionType": {
+"FormalName": "SAE J1772-2009",
+"IsDiscontinued": null,
+"IsObsolete": null,
+"ID": 1,
+"Title": "J1772"
+},
+"Reference": null,
+"StatusTypeID": null,
+"StatusType": null,
+"LevelID": 2,
+"Level": {
+"Comments": "Over 2 kW, usually non-domestic socket type",
+"IsFastChargeCapable": false,
+"ID": 2,
+"Title": "Level 2 : Medium (Over 2kW)"
+},
+"Amps": 16,
+"Voltage": 230,
+"PowerKW": 3,
+"CurrentTypeID": 10,
+"CurrentType": {
+"Description": "Alternating Current - Single Phase",
+"ID": 10,
+"Title": "AC (Single-Phase)"
+},
+"Quantity": 4,
+"Comments": null
+},
+{
+"ID": 50321,
+"ConnectionTypeID": 1,
+"ConnectionType": {
+"FormalName": "SAE J1772-2009",
+"IsDiscontinued": null,
+"IsObsolete": null,
+"ID": 1,
+"Title": "J1772"
+},
+"Reference": null,
+"StatusTypeID": null,
+"StatusType": null,
+"LevelID": 2,
+"Level": {
+"Comments": "Over 2 kW, usually non-domestic socket type",
+"IsFastChargeCapable": false,
+"ID": 2,
+"Title": "Level 2 : Medium (Over 2kW)"
+},
+"Amps": 16,
+"Voltage": 230,
+"PowerKW": 3,
+"CurrentTypeID": 10,
+"CurrentType": {
+"Description": "Alternating Current - Single Phase",
+"ID": 10,
+"Title": "AC (Single-Phase)"
+},
+"Quantity": 1,
+"Comments": null
+}
+],
+"MediaItems": null,
+"MetadataValues": null,
+"IsRecentlyVerified": false,
+"DateLastVerified": null
+},
