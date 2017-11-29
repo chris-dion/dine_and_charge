@@ -60,22 +60,24 @@ function initMap() {
 
             //display set for the google map windows, creates a var to use
 
-            var setDisplay = new google.maps.InfoWindow({
-              content: contentString
-            });
+           
               // Creates markers on the page and stores them in array
-            marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
+            let marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
                //post new lat and long to a marker
                   //div only being run
-            var contentString = "<div><p> lat= "  +marker.getPosition().lat()+" long= " +marker.getPosition().lng()+"</p></div>";
+            let contentString = "<div><p> lat= "  +marker.getPosition().lat()+" long= " +marker.getPosition().lng()+"</p></div>";
             marker_array [i] = marker;
+
+             var setDisplay = new google.maps.InfoWindow({
+              content: contentString
+            });
 
             marker.addListener( 'click', function(){
                 setDisplay.open(map, marker);
             });
           }
 
-          console.log(marker_array[0].getPosition().lat());
+          //console.log(marker_array[0].getPosition().lat());
 
                 // make an api query to open charge to get ev station for 20 miles
 
