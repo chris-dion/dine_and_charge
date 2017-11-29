@@ -33,13 +33,14 @@ function initMap() {
     lat = event.latLng.lat();
     long = event.latLng.lng();
     // after lat long 
-var queryURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&maxresults=10&latitude="+lat+"&longitude="+long+"&distance=20&distanceunit=Miles";
+
+var queryChargeURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&maxresults=10&latitude="+lat+"&longitude="+long+"&distance=50&distanceunit=Miles";
 
     //create event to send lat long to opencharge API
 
 
     $.ajax({
-      url: queryURL,
+      url: queryChargeURL,
       method:"GET"
     })
     .done(function(response){
