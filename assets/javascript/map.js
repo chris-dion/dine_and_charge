@@ -8,6 +8,7 @@ var queryURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&
 function initMap() {
 	//centers map around the texas area
   var myLatlng = {lat: 30.275, lng: -97.730};
+  var marker_array = [];
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
