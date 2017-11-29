@@ -9,6 +9,23 @@ var queryURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&
 
 //https://api.foursquare.com/v2/venues/search?client_id=G4IC4U00QBF1J4NAJZIMLHTIZC15IDUYDIAAN420YTSIR3WE&client_secret=OTMNQNDGDXD4TJMP5QB3FENUXIDRWR0YCZHWFQYLIDMIP25G&near=Austin,TX&query=sushi%20&v=20171128
 
+function initMap() {
+	//centers map around the texas area
+  var myLatlng = {lat: 30.275, lng: -97.730};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatlng
+  });
+
+  google.maps.event.addListener(map, 'click', function(event) {
+    marker = new google.maps.Marker({position: event.latLng, map: map});
+    console.log(event.latLng.lat());
+    lat = event.latLng.lat();
+    long = event.latLng.lng();
+  });
+}
+
 // // Initialize Firebase
 //   var config = {
 //     apiKey: "AIzaSyAQfDZXPnxppD3_QVQrAlg-0NW5TwqXOHY",
