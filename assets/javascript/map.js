@@ -3,13 +3,12 @@ var lat = 30.287738;
 var long = -97.729001;
 // API doesn't need a key, current settings: max results=10, distance searched=10, units=miles, export to JSON
   //JSON export file seems to output in order of distance from lat long
-
+  var marker_array = [];
 //https://api.foursquare.com/v2/venues/search?client_id=G4IC4U00QBF1J4NAJZIMLHTIZC15IDUYDIAAN420YTSIR3WE&client_secret=OTMNQNDGDXD4TJMP5QB3FENUXIDRWR0YCZHWFQYLIDMIP25G&near=Austin,TX&query=sushi%20&v=20171128
 
 function initMap() {
 	//centers map around the texas area
   var myLatlng = {lat: 30.275, lng: -97.730};
-  var marker_array = [];
 
 // Initialize Firebase
   var config = {
@@ -33,6 +32,7 @@ function initMap() {
     lat = event.latLng.lat();
     long = event.latLng.lng();
     // after lat long 
+
 var queryChargeURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&maxresults=10&latitude="+lat+"&longitude="+long+"&distance=50&distanceunit=Miles";
 
     //create event to send lat long to opencharge API
@@ -55,9 +55,13 @@ var queryChargeURL = "https://api.openchargemap.io/v2/poi/?output=json&countryco
         var newLat = response[i].AddressInfo.Latitude;
         var newLong = response[i].AddressInfo.Longitude;
 
-
+          // Creates markers on the page and stores them in array
         marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
+        marker_array [i] = marker;
       }
+
+      console.log(marker_array[0].getPosition().lat());
+
 
       
     })
@@ -67,6 +71,11 @@ var queryChargeURL = "https://api.openchargemap.io/v2/poi/?output=json&countryco
       // add listener for marker click 
         //make api call for foursqure for rest. in the area
           // show list on google maps 
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    window.location.href = marker.url;
+       
+
   });
 }
 
