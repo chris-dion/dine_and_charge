@@ -23,6 +23,14 @@ function initMap() {
     console.log(event.latLng.lat());
     lat = event.latLng.lat();
     long = event.latLng.lng();
+
+    //create event to send lat long to opencharge API
+      // make an api query to open charge to get ev station for 20 miles
+
+    //display stations as markers on google maps
+      // add listener for marker click 
+        //make api call for foursqure for rest. in the area
+          // show list on google maps 
   });
 }
 
