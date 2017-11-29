@@ -33,7 +33,7 @@ function initMap() {
     lat = event.latLng.lat();
     long = event.latLng.lng();
     // after lat long 
-var queryURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&maxresults=10&latitude="+lat+"&longitude="+long+"&distance=50&distanceunit=Miles";
+var queryURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&maxresults=10&latitude="+lat+"&longitude="+long+"&distance=20&distanceunit=Miles";
 
     //create event to send lat long to opencharge API
 
@@ -57,6 +57,7 @@ var queryURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&
 
 
         marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
+        marker_array [i] = marker;
       }
 
       
