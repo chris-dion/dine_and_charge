@@ -91,13 +91,46 @@ function initMap() {
                 var foursquareClient = "G4IC4U00QBF1J4NAJZIMLHTIZC15IDUYDIAAN420YTSIR3WE";
                 var foursquareSecret = "OTMNQNDGDXD4TJMP5QB3FENUXIDRWR0YCZHWFQYLIDMIP25G";
                 var queryFoodURL = "https://api.foursquare.com/v2/venues/explore?&ll="+marker.position.lat()+","+marker.position.lng()+"&radius=1609&section=food&client_id="+foursquareClient+"&client_secret="+foursquareSecret+"&v=20171130";
+                console.log(queryFoodURL);
                 //ajax call for foursquare that console logs the name of a food place in groups[0]
                 $.ajax({
                   url: queryFoodURL,
                   method:"GET"
                 })
                 .done(function(aresponse){
-                  console.log(aresponse.response.groups[0].items[0].venue.name);
+                  //how to get relevant info from foursquare json file
+                  console.log("name: "+aresponse.response.groups[0].items[0].venue.name);
+                  console.log("category: "+aresponse.response.groups[0].items[0].venue.categories[0].shortName);
+                  console.log("lat: "+aresponse.response.groups[0].items[0].venue.location.lat);
+                  console.log("lng: "+aresponse.response.groups[0].items[0].venue.location.lng);
+                  //remove old markers
+                  clearOverlays();
+                  //remove old popup windows
+                  clearWindows();
+                  console.log()
+                  // creates map flags for foursquare responses
+                  for (var i=0;i<aresponse.response.groups[0].items.length;i++) {
+                    //new scoped variables
+                    var restName = aresponse.response.groups[0].items[i].venue.name;
+                    var restCat = aresponse.response.groups[0].items[i].venue.categories[0].shortName;
+                    var restLat = aresponse.response.groups[0].items[i].venue.location.lat;
+                    var restLng = aresponse.response.groups[0].items[i].venue.location.lng;   
+                    // create new set of markers
+                    let marker = new google.maps.Marker({position:{lat: restLat, lng: restLng  }, map: map});
+                     //post new lat and long to a marker
+                        //div only being run
+                    let contentString = "<div><p> Restaurant Name: "  +restName+"</p><br><p> Genre: " +restCat+"</p></div>";
+                    console.log(contentString);
+
+                    let setDisplay = new google.maps.InfoWindow({
+                      content: contentString
+                    });
+
+                    infoWindow_array [i] = setDisplay;
+
+                    }
+
+
                 });
 
                 // *uncoded* we need to take the aresponse json and pull our desired fields into an array
