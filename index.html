@@ -1,17 +1,61 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 	<title>
 		Dine 'N Charge
 	</title>
+		<!-- 	Link to the reset -->
 	<link rel="stylesheet" src="assets/css/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+  <!-- Link to the Personal JavaScript -->
+  <script type="text/javascript" src="assets/javascript/map.js"></script>
+	<!-- Link to the BootStrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<!-- Link to the Style CSS  -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  	<!-- Link to AJAX -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<!-- Link to BootStrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<!-- Link to FireBase -->
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+  	<!-- Link to Moment Time JS -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+
+  
 </head>
 <body>
+	<div class="container">
+			<!-- Have the title to the page here --> 
+		<div class="row" id="topTitle">Title</div>
+		<div class="row">
+			<!--  Map will be placed here --> 
+			<div class="col-lg-6">
+				<div id="map">
+	        	</div>
+			</div>	
 
+			<div class="col-lg-6">
+	        	<div id="mapSideBar">Sider Bar</div>
+			</div>
+
+		</div>
+			<!--Footer Placeholder...also for nominal inputs. Can be deleted later-->
+		<div class="row">
+			<div class="col-lg-12" id="latLongNominalInput"> 
+				<input class="form-control" type="text" id="latTry">
+				<input class="form-control" type="text" id="longTry">
+				<button class="btn btn-primary" id="try-this-lat-long">Try This</button>
+			</div>
+		</div>
+		<div id="footerBar">Footer Placeholder</div>
+
+	</div>
+
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcM0LsDBHee23-h9BgCrwvpQYl0mwJcqY&callback=initMap">
+</script>
 </body>
 </html>
