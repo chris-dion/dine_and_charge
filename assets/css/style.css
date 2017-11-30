@@ -1,9 +1,12 @@
 body{
-	background-color: lightgreen;
+	background-size: cover;
+	background-image: url(http://moziru.com/images/ground-clipart-road-background-13.jpg);
 }
 
 .container{
-	background-color: white;
+	margin-top: 75px;
+	background-size: cover;
+	background-image: url(http://www.earthtimes.org/newsimage/wireless_car_charging_2011.jpg);
 }
 
 #map {
@@ -17,8 +20,9 @@ body{
 #topTitle{
 	width:100%;
 	text-align: center;
-	font-size: 36px;
+	font-size: 42px;
 	font-weight: bold;
+	font-family: sans-serif;
 }
 
 #mapSideBar{
@@ -26,3 +30,4 @@ body{
 	border-width: 10px;
 	border:solid;
 }
+
