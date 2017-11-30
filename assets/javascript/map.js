@@ -86,6 +86,22 @@ function initMap() {
             marker.addListener( 'click', function(){
                 clearWindows();
                 setDisplay.open(map, marker);
+                
+                //builds local queryFoodURL variable for foursquare api call
+                var foursquareClient = "G4IC4U00QBF1J4NAJZIMLHTIZC15IDUYDIAAN420YTSIR3WE";
+                var foursquareSecret = "OTMNQNDGDXD4TJMP5QB3FENUXIDRWR0YCZHWFQYLIDMIP25G";
+                var queryFoodURL = "https://api.foursquare.com/v2/venues/explore?&ll="+marker.position.lat()+","+marker.position.lng()+"&radius=1609&section=food&client_id="+foursquareClient+"&client_secret="+foursquareSecret+"&v=20171130";
+                //ajax call for foursquare that console logs the name of a food place in groups[0]
+                $.ajax({
+                  url: queryFoodURL,
+                  method:"GET"
+                })
+                .done(function(aresponse){
+                  console.log(aresponse.response.groups[0].items[0].venue.name);
+                });
+
+                // *uncoded* we need to take the aresponse json and pull our desired fields into an array
+
             });
 
             marker_array [i] = marker;
