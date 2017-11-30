@@ -49,7 +49,7 @@ function initMap() {
           url: queryChargeURL,
           method:"GET"
         })
-        .done(function(response){
+      .done(function(response){
 
           //Store ID in FireBase ?
           // var locationMap = response[0].ID;
@@ -72,6 +72,8 @@ function initMap() {
            
               // Creates markers on the page and stores them in array
             let marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
+
+            //console.log("test"+marker.position.lat());
                //post new lat and long to a marker
                   //div only being run
             let contentString = "<div><p> Address: "  +address+"</p><br><p> Fee: " +cost+"</p></div>";
