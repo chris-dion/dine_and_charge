@@ -2,10 +2,13 @@
 var lat = 30.287738;
 var long = -97.729001;
 
+//once the user click on the map the map will prevent any new ev station markers being created
 var firstClick = false;
+
 // API doesn't need a key, current settings: max results=10, distance searched=10, units=miles, export to JSON
   //JSON export file seems to output in order of distance from lat long
   var marker_array = [];
+  var infoWindow_array = [];
 //https://api.foursquare.com/v2/venues/search?client_id=G4IC4U00QBF1J4NAJZIMLHTIZC15IDUYDIAAN420YTSIR3WE&client_secret=OTMNQNDGDXD4TJMP5QB3FENUXIDRWR0YCZHWFQYLIDMIP25G&near=Austin,TX&query=sushi%20&v=20171128
 
 function initMap() {
@@ -30,6 +33,7 @@ function initMap() {
 
   google.maps.event.addListener(map, 'click', function(event) {
     if(firstClick === false){
+        clearOverlays();
         // marker = new google.maps.Marker({position: event.latLng, map: map});
         console.log(event.latLng.lat());
         lat = event.latLng.lat();
@@ -57,6 +61,11 @@ function initMap() {
             //create long an lat from the database
             var newLat = response[i].AddressInfo.Latitude;
             var newLong = response[i].AddressInfo.Longitude;
+            let address = response[i].AddressInfo.AddressLine1;
+            let cost = response[i].UsageCost;
+            if (cost === null){
+              cost = "N/A";
+            }
 
             //display set for the google map windows, creates a var to use
 
@@ -65,19 +74,22 @@ function initMap() {
             let marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
                //post new lat and long to a marker
                   //div only being run
-            let contentString = "<div><p> lat= "  +marker.getPosition().lat()+" long= " +marker.getPosition().lng()+"</p></div>";
-            marker_array [i] = marker;
+            let contentString = "<div><p> Address: "  +address+"</p><br><p> Fee: " +cost+"</p></div>";
+            console.log(contentString);
 
-             var setDisplay = new google.maps.InfoWindow({
+            let setDisplay = new google.maps.InfoWindow({
               content: contentString
             });
 
+            infoWindow_array [i] = setDisplay;
+
             marker.addListener( 'click', function(){
+                clearWindows();
                 setDisplay.open(map, marker);
             });
-          }
 
-          //console.log(marker_array[0].getPosition().lat());
+            marker_array [i] = marker;
+          }
 
                 // make an api query to open charge to get ev station for 20 miles
 
@@ -86,8 +98,28 @@ function initMap() {
                   //make api call for foursqure for rest. in the area
                     // show list on google maps 
             });
-}
+
+    //this is the closing of the if firstclick === false statement.
+    }
 });
+
+
+
+function clearOverlays() {
+  for (var i = 0; i < marker_array.length; i++ ) {
+    marker_array[i].setMap(null);
+  }
+  marker_array.length = 0;
+}
+
+function clearWindows() {
+  for (var i = 0; i < infoWindow_array.length; i++ ) {
+    infoWindow_array[i].close();
+  }
+}
+
+
+
 };
 
 
