@@ -3,7 +3,8 @@ var lat = 30.287738;
 var long = -97.729001;
 
 //once the user click on the map the map will prevent any new ev station markers being created
-var firstClick = false;
+var station_click = false;
+var station_or_rest_info = false;
 
 // API doesn't need a key, current settings: max results=10, distance searched=10, units=miles, export to JSON
   //JSON export file seems to output in order of distance from lat long
@@ -27,12 +28,12 @@ function initMap() {
   firebase.initializeApp(config);
   
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 12,
     center: myLatlng
   }); 
 
   google.maps.event.addListener(map, 'click', function(event) {
-    if(firstClick === false){
+    if(station_click === false){
         clearOverlays();
         // marker = new google.maps.Marker({position: event.latLng, map: map});
         console.log(event.latLng.lat());
@@ -49,7 +50,7 @@ function initMap() {
           url: queryChargeURL,
           method:"GET"
         })
-        .done(function(response){
+      .done(function(response){
 
           //Store ID in FireBase ?
           // var locationMap = response[0].ID;
@@ -64,7 +65,7 @@ function initMap() {
             let address = response[i].AddressInfo.AddressLine1;
             let cost = response[i].UsageCost;
             if (cost === null){
-              cost = "N/A";
+              cost = "unknown";
             }
 
             //display set for the google map windows, creates a var to use
@@ -72,6 +73,14 @@ function initMap() {
            
               // Creates markers on the page and stores them in array
             let marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
+            
+            $("#station_submit").click(function () {
+              clearWindows();
+              clearOverlays();
+              call_foursquare(marker);
+            });
+
+            //console.log("test"+marker.position.lat());
                //post new lat and long to a marker
                   //div only being run
             let contentString = "<div><p> Address: "  +address+"</p><br><p> Fee: " +cost+"</p></div>";
@@ -86,9 +95,14 @@ function initMap() {
             marker.addListener( 'click', function(){
                 clearWindows();
                 setDisplay.open(map, marker);
+                document.getElementById('station_address').value= address;
+                document.getElementById('station_fee').value= cost;
+                // *uncoded* we need to take the aresponse json and pull our desired fields into an array
+            //end of marker button
             });
 
             marker_array [i] = marker;
+          //end of the for loop
           }
 
                 // make an api query to open charge to get ev station for 20 miles
@@ -96,13 +110,13 @@ function initMap() {
               //display stations as markers on google maps
                 // add listener for marker click 
                   //make api call for foursqure for rest. in the area
-                    // show list on google maps 
+                    // show list on google maps
             });
 
-    //this is the closing of the if firstclick === false statement.
+    //this is the closing of the if station_click === false statement.
+    station_click = true;
     }
 });
-
 
 
 function clearOverlays() {
@@ -118,9 +132,54 @@ function clearWindows() {
   }
 }
 
+function call_foursquare(marker){
+  //builds local queryFoodURL variable for foursquare api call
+  marker_array.length = 0;
+  infoWindow_array.length = 0;
+  var foursquareClient = "G4IC4U00QBF1J4NAJZIMLHTIZC15IDUYDIAAN420YTSIR3WE";
+  var foursquareSecret = "OTMNQNDGDXD4TJMP5QB3FENUXIDRWR0YCZHWFQYLIDMIP25G";
+  var queryFoodURL = "https://api.foursquare.com/v2/venues/explore?&ll="+marker.position.lat()+","+marker.position.lng()+"&radius=1609&section=food&client_id="+foursquareClient+"&client_secret="+foursquareSecret+"&limit=10&v=20171130";
+  console.log(queryFoodURL);
+  //ajax call for foursquare that console logs the name of a food place in groups[0]
+  $.ajax({
+    url: queryFoodURL,
+    method:"GET"
+  })
+  .done(function(aresponse){
+    // creates map flags for foursquare responses
+    for (var i=0;i<aresponse.response.groups[0].items.length;i++) {
+      //new scoped variables
+      var restName = aresponse.response.groups[0].items[i].venue.name;
+      var restCat = aresponse.response.groups[0].items[i].venue.categories[0].shortName;
+      var restLat = aresponse.response.groups[0].items[i].venue.location.lat;
+      var restLng = aresponse.response.groups[0].items[i].venue.location.lng;   
+      // create new set of markers
+      let marker2 = new google.maps.Marker({position:{lat: restLat, lng: restLng  }, map: map});
+       //post new lat and long to a marker
+          //div only being run
+      let contentString2 = "<div><p> Restaurant Name: "  +restName+"</p><br><p> Genre: " +restCat+"</p></div>";
+      console.log(contentString2);
 
+      let setDisplay2 = new google.maps.InfoWindow({
+        content: contentString2
+      });
 
-};
+      infoWindow_array [i] = setDisplay2;
+      marker_array[i] = marker2;
+
+    marker2.addListener( 'click', function(){
+        clearWindows();
+        setDisplay2.open(map, marker2);
+
+      });
+
+      }
+
+  //end of ajax
+  });
+}
+
+}
 
 
 // // Initialize Firebase
