@@ -1,19 +1,17 @@
 // global variables with nominal Austin lat/long for opencharge api call...google maps pin drop outputs to 6 decimal places
 var lat = 30.287738;
 var long = -97.729001;
-
+//hack we used to make the foursquare markers not output 100 results
 var chosen_marker;
-
 //once the user click on the map the map will prevent any new ev station markers being created
 var station_click = false;
 var station_or_rest_info = false;
-
 // API doesn't need a key, current settings: max results=10, distance searched=10, units=miles, export to JSON
   //JSON export file seems to output in order of distance from lat long
 var marker_array = [];
 var infoWindow_array = [];
-//https://api.foursquare.com/v2/venues/search?client_id=G4IC4U00QBF1J4NAJZIMLHTIZC15IDUYDIAAN420YTSIR3WE&client_secret=OTMNQNDGDXD4TJMP5QB3FENUXIDRWR0YCZHWFQYLIDMIP25G&near=Austin,TX&query=sushi%20&v=20171128
 
+//the script that does all the magic
 function initMap() {
 	//centers map around the texas area
   var myLatlng = {lat: 30.275, lng: -97.730};
@@ -26,8 +24,13 @@ function initMap() {
     storageBucket: "ut-drive-and-charge-project.appspot.com",
     messagingSenderId: "231709144176"
   };
-  
   firebase.initializeApp(config);
+
+
+// FIREBASE pseudocode time
+//  if items returened = 20, record the charge station search radius, id, lat, long, other relevant info from response
+//  else, don't record the info
+
   
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
@@ -42,21 +45,16 @@ function initMap() {
       lat = event.latLng.lat();
       long = event.latLng.lng();
       // after lat long 
-
     var queryChargeURL = "https://api.openchargemap.io/v2/poi/?output=json&countrycode=US&maxresults=10&latitude="+lat+"&longitude="+long+"&distance=50&distanceunit=Miles";
-
     //create event to send lat long to opencharge API
     $.ajax({
       url: queryChargeURL,
       method:"GET"
     })
     .done(function(response){
-
       //Store ID in FireBase ?
       // var locationMap = response[0].ID;
-
       //  console.log(locationMap);
-
       for (i =0; i < response.length; i++){
         //create long an lat from the database
         var newLat = response[i].AddressInfo.Latitude;
@@ -137,7 +135,10 @@ function initMap() {
     infoWindow_array.length = 0;
     var foursquareClient = "G4IC4U00QBF1J4NAJZIMLHTIZC15IDUYDIAAN420YTSIR3WE";
     var foursquareSecret = "OTMNQNDGDXD4TJMP5QB3FENUXIDRWR0YCZHWFQYLIDMIP25G";
-    var queryFoodURL = "https://api.foursquare.com/v2/venues/explore?&ll="+marker.position.lat()+","+marker.position.lng()+"&radius=1609&section=food&client_id="+foursquareClient+"&client_secret="+foursquareSecret+"&limit=10&v=20171130";
+    // sets api call to .5 miles (distance in meters)
+    var foursquareDistance = 805;
+    var foursquareLimit = 20;
+    var queryFoodURL = "https://api.foursquare.com/v2/venues/explore?&ll="+marker.position.lat()+","+marker.position.lng()+"&radius="+foursquareDistance+"&section=food&client_id="+foursquareClient+"&client_secret="+foursquareSecret+"&limit="+foursquareLimit+"&v=20171130";
     console.log(queryFoodURL);
     //ajax call for foursquare that console logs the name of a food place in groups[0]
     $.ajax({
@@ -175,3 +176,4 @@ function initMap() {
   //end of call_foursquare  
   }
 }
+
