@@ -25,12 +25,12 @@ function initMap() {
     messagingSenderId: "231709144176"
   };
   firebase.initializeApp(config);
-  
+    // adds a map on the html
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     center: myLatlng
   }); 
-
+    // event listener click for the map to add the  
   google.maps.event.addListener(map, 'click', function(event) {
     if(firstClick === false){
         clearOverlays();
