@@ -17,9 +17,10 @@ body{
 	background-color: grey;
 }
 
-#topTitle{
+h1{
 	width:100%;
 	text-align: center;
+	color: yellowgreen;
 	font-size: 42px;
 	font-weight: bold;
 	font-family: sans-serif;
@@ -29,5 +30,12 @@ body{
 	font-size: 26px;
 	border-width: 10px;
 	border:solid;
+	height: 400px;
+	min-width: 300px;
+	min-height: 300px;
+	
 }
 
+.myScrollspy{
+	width: 100%
+}

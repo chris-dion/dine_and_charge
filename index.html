@@ -28,25 +28,34 @@
 <body>
 	<div class="container">
 			<!-- Have the title to the page here --> 
-		<div class="row" id="topTitle">Title</div>
+		<div class="page-header">
+      <h1>Dine 'N Charge</h1>
+    </div>
+      <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+        </form>
+      </nav>
 		<div class="row">
 			<!--  Map will be placed here --> 
 			<div class="col-lg-6">
 				<div id="map">
-	        	</div>
+	      </div>
 			</div>	
 
-			<div class="col-lg-6">
-	        	<div id="mapSideBar">Sider Bar</div>
+
+			<div>
+        <nav class="col-lg-6" id="myScrollspy">
+        <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+        </nav>
+	        	<div class="col-lg-6" id="mapSideBar">Sider Bar</div>
 			</div>
 
-		</div>
 			<!--Footer Placeholder...also for nominal inputs. Can be deleted later-->
 		<div class="row">
 			<div class="col-lg-12" id="latLongNominalInput"> 
-				<input class="form-control" type="text" id="latTry">
-				<input class="form-control" type="text" id="longTry">
-				<button class="btn btn-primary" id="try-this-lat-long">Try This</button>
+				<input class="form-control" type="text" id="station_address">
+				<input class="form-control" type="text" id="station_fee">
+				<button class="btn btn-primary" id="station_submit">Submit</button>
 			</div>
 		</div>
 		<div id="footerBar">Footer Placeholder</div>
