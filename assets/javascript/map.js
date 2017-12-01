@@ -158,37 +158,21 @@ function call_foursquare(marker){
        //post new lat and long to a marker
           //div only being run
       let contentString2 = "<div><p> Restaurant Name: "  +restName+"</p><br><p> Genre: " +restCat+"</p></div>";
-      console.log(contentString2);
-
+      // console.log(contentString2);
       let setDisplay2 = new google.maps.InfoWindow({
         content: contentString2
       });
-
-      infoWindow_array [i] = setDisplay2;
-      marker_array[i] = marker2;
+    infoWindow_array [i] = setDisplay2;
+    marker_array[i] = marker2;
 
     marker2.addListener( 'click', function(){
-        clearWindows();
-        setDisplay2.open(map, marker2);
-
-      });
-
-      }
-
-  //end of ajax
+      clearWindows();
+      setDisplay2.open(map, marker2);
+    });
+  }
+  //end of ajax done
   });
+//end of call_foursquare  
 }
 
 }
-
-
-// // Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyAQfDZXPnxppD3_QVQrAlg-0NW5TwqXOHY",
-//     authDomain: "ut-drive-and-charge-project.firebaseapp.com",
-//     databaseURL: "https://ut-drive-and-charge-project.firebaseio.com",
-//     projectId: "ut-drive-and-charge-project",
-//     storageBucket: "ut-drive-and-charge-project.appspot.com",
-//     messagingSenderId: "231709144176"
-//   };
-//   firebase.initializeApp(config);
