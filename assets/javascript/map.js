@@ -10,7 +10,6 @@ var station_or_rest_info = false;
   //JSON export file seems to output in order of distance from lat long
 var marker_array = [];
 var infoWindow_array = [];
-
 //the script that does all the magic
 function initMap() {
 	//centers map around the texas area
@@ -29,7 +28,8 @@ function initMap() {
 // FIREBASE pseudocode time
 //  if items returened = 20, record the charge station search radius, id, lat, long, other relevant info from response
 //  else, don't record the info
-
+// set the database
+var database = firebase.database();
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
@@ -86,7 +86,14 @@ function initMap() {
             setDisplay.open(map, marker);
             document.getElementById('station_address').value= address;
             document.getElementById('station_fee').value= cost;
-            chosen_marker = marker;
+            chosen_marker = marker
+            // FIRE BASE Pushes the clicked location to the data base
+            var savedAddress= address;
+                      var storageInfo = {
+            popularLocation: savedAddress
+            };
+            // pushing that information to the database
+            database.ref().push(storageInfo);
             // *uncoded* we need to take the aresponse json and pull our desired fields into an array
         //end of marker button
         });
@@ -94,12 +101,7 @@ function initMap() {
         marker_array[i] = marker;
       //end of the for loop
       }
-            // make an api query to open charge to get ev station for 20 miles
-            //display stations as markers on google maps
-            // add listener for marker click 
-            //make api call for foursqure for rest. in the area
-            // show list on google maps
-    // end of the ajax done response
+            
     });
 
     station_click = true;
@@ -174,5 +176,12 @@ function initMap() {
     });
   //end of call_foursquare  
   }
+// creates a function to add the current informaiton from the station address to the mapSiderBar
+  database.ref().on("child_added", function(childSnapshot, prevChildKey){
+  var dataBaseLocation = childSnapshot.val().popularLocation;
+    // places the information in the sidebar 
+  $("#mapSiderBar").append("<p>"+dataBaseLocation+"</p>");
+  });
+
 }
 
