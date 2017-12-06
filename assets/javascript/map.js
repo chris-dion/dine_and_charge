@@ -130,6 +130,11 @@ var database = firebase.database();
     call_foursquare(chosen_marker);
   });
 
+  //on refresh page button click, reload the page
+  $("#refreshPage").click(function () {
+    location.reload(true);
+  });
+
   function call_foursquare(marker){
     //builds local queryFoodURL variable for foursquare api call
     marker_array.length = 0;
