@@ -25,11 +25,8 @@ function initMap() {
   };
   firebase.initializeApp(config);
 
-// FIREBASE pseudocode time
-//  if items returened = 20, record the charge station search radius, id, lat, long, other relevant info from response
-//  else, don't record the info
-// set the database
 var database = firebase.database();
+
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
@@ -51,20 +48,25 @@ var database = firebase.database();
       method:"GET"
     })
     .done(function(response){
-      //Store ID in FireBase ?
-      // var locationMap = response[0].ID;
-      //  console.log(locationMap);
       for (i =0; i < response.length; i++){
         //create long an lat from the database
         var newLat = response[i].AddressInfo.Latitude;
         var newLong = response[i].AddressInfo.Longitude;
+        // var locationMap = response[i].ID;
         let address = response[i].AddressInfo.AddressLine1;
         let cost = response[i].UsageCost;
         if (cost === null){
           cost = "unknown";
         }
+             // FIRE BASE Pushes the clicked location to the data base
+        var lastLocationLat = response[9].AddressInfo.Latitude;
+         var lastLocationLong = response[9].AddressInfo.Longitude;
+            var storageInfo = {
+            lastLocationLat: lastLocationLat,
+            lastLocationLong: lastLocationLong
+            };
+            database.ref().set(storageInfo);
 
-        //display set for the google map windows, creates a var to use
 
         // Creates markers on the page and stores them in array
         let marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
@@ -87,13 +89,7 @@ var database = firebase.database();
             document.getElementById('station_address').value= address;
             document.getElementById('station_fee').value= cost;
             chosen_marker = marker
-            // FIRE BASE Pushes the clicked location to the data base
-            var savedAddress= address;
-                      var storageInfo = {
-            popularLocation: savedAddress
-            };
-            // pushing that information to the database
-            database.ref().push(storageInfo);
+
             // *uncoded* we need to take the aresponse json and pull our desired fields into an array
         //end of marker button
         });
@@ -181,12 +177,21 @@ var database = firebase.database();
     });
   //end of call_foursquare  
   }
+  // issues with getting the data to 
+  // not saving in the arr but over writes the array
+  window.onload = function baseRun(){
 // creates a function to add the current informaiton from the station address to the mapSiderBar
   database.ref().on("child_added", function(childSnapshot, prevChildKey){
-  var dataBaseLocation = childSnapshot.val().popularLocation;
-    // places the information in the sidebar 
-  $("#mapSiderBar").append("<p>"+dataBaseLocation+"</p>");
-  });
+  var dataLocation = childSnapshot.val();
+  var dataLocationNumber = parseFloat(dataLocation);
+  var storedLocationArr = [];
+  storedLocationArr.push(dataLocation);
+  console.log(storedLocationArr);
+
+  // new google.maps.Marker({position:{lat:, lng:}, map: map});
+
+});
+  }
 
 }
 
