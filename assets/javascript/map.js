@@ -3,6 +3,8 @@ var lat = 30.287738;
 var long = -97.729001;
 //hack we used to make the foursquare markers not output 100 results
 var chosen_marker;
+var chosen_address;
+var chosen_cost;
 //once the user click on the map the map will prevent any new ev station markers being created
 var station_click = false;
 var station_or_rest_info = false;
@@ -45,7 +47,7 @@ var database = firebase.database();
       let rec_marker = new google.maps.Marker({position:{lat: dataLocation.markerLocation.lastLocationLat, lng: dataLocation.markerLocation.lastLocationLong }, map: map, icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'});
 
       // create a display window for marker
-      let contentString2 = "<div><p>This is a highly recommended charging station</p></div>";
+      let contentString2 = "<div><p>This is a highly recommended charging station <br> Address: "+ dataLocation.markerLocation.restaurantAddress+"<br> Cost: "+dataLocation.markerLocation.locationCost+"</p></div>";
       console.log(firebase_counter);
 
       //add windows to infowindows_array2
@@ -69,8 +71,8 @@ var database = firebase.database();
         console.log("listener works");
           clearWindows();
           setDisplay2.open(map, rec_marker);
-          document.getElementById('station_address').value= "Addresss";
-          document.getElementById('station_fee').value= "cost";
+          document.getElementById('station_address').value= dataLocation.markerLocation.restaurantAddress ;
+          document.getElementById('station_fee').value=  dataLocation.markerLocation.locationCost;
           chosen_marker = rec_marker;
       });
   });
@@ -103,6 +105,8 @@ var database = firebase.database();
         // var locationMap = response[i].ID;
         let address = response[i].AddressInfo.AddressLine1;
         let cost = response[i].UsageCost;
+        chosen_address = address;
+        chosen_cost = cost;
         if (cost === null){
           cost = "unknown";
         }
@@ -196,12 +200,16 @@ var database = firebase.database();
       var results =aresponse.response.groups[0].items.length;
       if (results >= 15){
         // FIRE BASE Pushes the clicked location to the data base
+        // var for location, address, and cost
         var lastLocationLat = marker.position.lat();
         var lastLocationLong = marker.position.lng();
         var storageInfo = {
           markerLocation:{
             lastLocationLat: lastLocationLat,
-            lastLocationLong: lastLocationLong
+            lastLocationLong: lastLocationLong,
+            restaurantAddress: chosen_address,
+            locationCost: chosen_cost
+
           }
         };
           database.ref().push(storageInfo);
