@@ -26,6 +26,13 @@ h1{
 	font-family: sans-serif;
 }
 
+h4{
+	font-size: 14px;
+	font-weight: normal;;
+	font-family: sans-serif;
+	text-align: center;
+}
+
 #mapSideBar{
 	font-size: 26px;
 	border-width: 10px;
@@ -39,3 +46,10 @@ h1{
 .myScrollspy{
 	width: 100%
 }
+
+.btn-outline-success{
+	margin-left: 260px;
+	background: yellowgreen;
+	padding: 15px;
+}
+

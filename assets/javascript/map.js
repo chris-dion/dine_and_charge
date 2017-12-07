@@ -240,3 +240,14 @@ var database = firebase.database();
 
 }
 
+function myFunction() {
+    if(document.getElementById("instructions").innerHTML == "Select your area on the map."){
+      document.getElementById("instructions").innerHTML = "Select desired charging station and press submit. ";
+
+    } else (document.getElementById("instructions").innerHTML = "Select from restaurants in the area.");
+  
+} 
+function refreshFunction(){
+  location.reload();
+}
+

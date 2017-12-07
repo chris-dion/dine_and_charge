@@ -30,6 +30,7 @@
 			<!-- Have the title to the page here --> 
 		<div class="page-header">
       <h1>Dine 'N Charge</h1>
+      <h4>Dine while your vehicle charges. We will help you find a charging station and show you restaurants in the area, just follow the instructions below.</h4>
     </div>
       <nav class="navbar navbar-light bg-light">
         <form class="form-inline">
@@ -44,10 +45,18 @@
 
 
 			<div>
-        <nav class="col-lg-6" id="myScrollspy">
-        <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
-        </nav>
-	        	<div class="col-lg-6" id="mapSideBar">Sider Bar</div>
+          	<div class="col-lg-6" id="mapSideBar">Instructions: 
+			<br>
+				1. Please select the area on the map where you would like a charging station. Highly recommended stations are in green.
+				<br>
+				2. Select a location pin for your charging station.
+				<br>
+				3. Press submit. This will bring up restaurant choices in the area.
+				<br>
+				4. Select a restaurant or press refresh to start over.
+				
+            </div>
+			</div>
 			</div>
 
 			<!--Footer Placeholder...also for nominal inputs. Can be deleted later-->
@@ -56,7 +65,11 @@
 				<input class="form-control" type="text" id="station_address">
 				<input class="form-control" type="text" id="station_fee">
 				<button class="btn btn-primary" id="station_submit">Submit</button>
+
+				
+
 				<button class="btn btn-primary" id="refreshPage">Refresh Page</button>
+
 
 			</div>
 		</div>
