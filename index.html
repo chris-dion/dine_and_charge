@@ -45,10 +45,15 @@
 
 
 			<div>
-          	<div class="col-lg-6" id="mapSideBar">Sider Bar
-              
+          	<div class="col-lg-6" id="mapSideBar">Instructions: Follow the steps and press next or refresh to start over.
+			<br>
+			<div class = "well text-center ">
+			<div>
+				<p id = "instructions">Select your area on the map.</p>
+				<button onclick="myFunction()">Next</button>
+				<button id="refreshPage" onclick= "refreshFunction()">Refresh Page</button>
             </div>
-
+			</div>
 			</div>
 
 			<!--Footer Placeholder...also for nominal inputs. Can be deleted later-->
@@ -57,7 +62,7 @@
 				<input class="form-control" type="text" id="station_address">
 				<input class="form-control" type="text" id="station_fee">
 				<button class="btn btn-primary" id="station_submit">Submit</button>
-				<button id="refreshPage">Refresh Page</button>
+				
 
 			</div>
 		</div>
