@@ -45,13 +45,20 @@
 
 
 			<div>
-          	<div class="col-lg-6" id="mapSideBar">Instructions: Follow the steps and press next or refresh to start over.
+          	<div class="col-lg-6" id="mapSideBar">Instructions: 
 			<br>
-			<div class = "well text-center ">
+			<!-- <div class = "well text-center ">
 			<div>
-				<p id = "instructions">Select your area on the map.</p>
-				<button onclick="myFunction()">Next</button>
-				<button id="refreshPage" onclick= "refreshFunction()">Refresh Page</button>
+				<p id = "instructions">Instructions:</p> -->
+				<br>
+				1. Please select the area on the map where you would like a charging station.
+				<br>
+				2. Select a location pin for your charging station.
+				<br>
+				3. Press submit. This will bring up restaurant choices in the area.
+				<br>
+				4. Select a restaurant or press refresh to start over.
+				
             </div>
 			</div>
 			</div>
@@ -62,11 +69,15 @@
 				<input class="form-control" type="text" id="station_address">
 				<input class="form-control" type="text" id="station_fee">
 				<button class="btn btn-primary" id="station_submit">Submit</button>
+
 				
+
+				<button class="btn btn-primary" id="refreshPage">Refresh Page</button>
+
 
 			</div>
 		</div>
-		<div id="footerBar">Footer Placeholder</div>
+		<div id="footerBar" style="text-align: center;">&#169;2017 Dev Team 6</div>
 
 	</div>
 
