@@ -106,10 +106,10 @@ var database = firebase.database();
         let address = response[i].AddressInfo.AddressLine1;
         let cost = response[i].UsageCost;
         chosen_address = address;
-        if (cost === null || cost === "undefined"){
-          cost = "unknown";
-        };
         chosen_cost = cost;
+        if (cost === null){
+          cost = "unknown";
+        }
 
         // Creates markers on the page and stores them in array
         let marker = new google.maps.Marker({position:{lat: newLat, lng: newLong  }, map: map});
