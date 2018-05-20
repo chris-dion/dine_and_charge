@@ -1,12 +1,34 @@
 body{
 	background-size: cover;
-	background-image: url(http://moziru.com/images/ground-clipart-road-background-13.jpg);
+	background-image: url(http://justgoods.info/wp-content/uploads/2016/04/Top-10-best-Simple-Awesome-Background-Images-for-Your-Website-or-Blog2.jpg);
+}
+
+p{
+	font-family: sans-serif;
+	text-align: center;
+	color: #0732a2;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.powerby{	
+	font-size: 20px;
+}
+
+#sqr{
+	width: 100%;
+	height: auto;
+}
+
+#ocm{
+	width: 100%;
+	height: auto; 
 }
 
 .container{
 	margin-top: 75px;
 	background-size: cover;
-	background-image: url(http://www.earthtimes.org/newsimage/wireless_car_charging_2011.jpg);
+	background-color: white;
 }
 
 #map {
@@ -20,26 +42,29 @@ body{
 h1{
 	width:100%;
 	text-align: center;
-	color: yellowgreen;
+	color: #0732a2;
 	font-size: 42px;
 	font-weight: bold;
 	font-family: sans-serif;
 }
 
-h4{
-	font-size: 14px;
-	font-weight: normal;;
+h3{
+	text-align: center;
 	font-family: sans-serif;
 	text-align: center;
 }
 
+#map{
+	border-height: 10px; 
+}
+
 #mapSideBar{
-	font-size: 26px;
+	font-size: 20px;
 	border-width: 10px;
 	border:solid;
-	height: 400px;
-	width: 49%;
-	min-height: 300px;
+	height: 230px;
+	width: 50%;
+	min-height: 200px;
 	background: rgba(255,255,255,0.95);
 	
 }
@@ -64,3 +89,16 @@ h4{
 	color: black;
 }
 
+#latLongNominalInput{
+	width: 30%;
+}
+
+.power {
+	background-color: white;
+	width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 75px;
+    left: 20px;
+    overflow-x: hidden;
+}

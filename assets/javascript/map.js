@@ -71,7 +71,7 @@ var database = firebase.database();
         console.log("listener works");
           clearWindows();
           setDisplay2.open(map, rec_marker);
-          document.getElementById('station_address').value= dataLocation.markerLocation.restaurantAddress ;
+          document.getElementById('station_address').value= dataLocation.markerLocation.restaurantAddress;
           document.getElementById('station_fee').value=  dataLocation.markerLocation.locationCost;
           chosen_marker = rec_marker;
       });

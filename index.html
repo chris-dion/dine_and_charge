@@ -26,40 +26,52 @@
   
 </head>
 <body>
+
+	<div class="power">
+		<P class= "powerby">Powered by</P>
+		<img src="assets/images/4sqr.png" alt="4sqr_logo" id="sqr">
+		<img src="assets/images/ocm.jpg" alt="ocm_logo" id="ocm">
+	</div>
+
 	<div class="container">
 			<!-- Have the title to the page here --> 
 		<div class="page-header">
-      <h1>Dine 'N Charge</h1>
-      <h4>Dine while your vehicle charges. We will help you find a charging station and show you restaurants in the area, just follow the instructions below.</h4>
-    </div>
-      <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-        </form>
-      </nav>
+	      <h1>Dine 'N Charge</h1>
+	      <h3><i>"Re-fueling Yourself and Your Electric Car"</i></h3>
+    	</div>
+
+		<div class="row">
+			<div class ="col-lg-12">
+				<div>
+		          	<div class="col-lg-6" id="mapSideBar"><u>Choose a green marker to use a saved charging station </u>
+					<br>
+						<ol>
+							<li>Select a charging station and click the submit button.</li>
+							<li>Browse nearby restaurants.</li>
+							<li>Refresh the page to choose new charging station.</li>
+						</ol>
+		            </div>
+
+		           <div class="col-lg-6" id="mapSideBar"><u>Find a new charging station</u>
+					<br>
+						<ol>
+							<li>Select any point on the map to find nearby charging stations.</li>
+							<li>Select a charging station by clicking a red marker.</li>
+							<li>Press the submit button to see restaurant options in the area.</li>
+							<li>Browse over restraunts information or refresh to find a new charging station.</li>
+						</ol>
+		            </div>
+				</div>
+			</div>
+		</div>
+		
 		<div class="row">
 			<!--  Map will be placed here --> 
-			<div class="col-lg-6">
-				<div id="map">
-	      </div>
-			</div>	
+			<div class="col-lg-12">
+					<div id="map"></div>
+		    </div>
+		</div>
 
-
-			<div>
-          	<div class="col-lg-6" id="mapSideBar">Instructions: 
-			<br>
-				1. Please select the area on the map where you would like a charging station. Highly recommended stations are in green.
-				<br>
-				2. Select a location pin for your charging station.
-				<br>
-				3. Press submit. This will bring up restaurant choices in the area.
-				<br>
-				4. Select a restaurant or press refresh to start over.
-				
-            </div>
-			</div>
-			</div>
-
-			<!--Footer Placeholder...also for nominal inputs. Can be deleted later-->
 		<div class="row">
 			<div class="col-lg-12" id="latLongNominalInput"> 
 				<input class="form-control" type="text" placeholder="Address" id="station_address">
@@ -73,6 +85,10 @@
 
 			</div>
 		</div>
+
+	</div>
+
+
 		<div id="footerBar" style="text-align: center;">&#169;2017 Dev Team 6</div>
 
 	</div>
