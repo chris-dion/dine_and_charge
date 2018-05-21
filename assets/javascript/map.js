@@ -15,6 +15,9 @@ var infoWindow_array = [];
 var marker_array2 = [];
 var infoWindow_array2 = [];
 
+//flag to see if user is using saved locations or not.
+var green_marker = false;
+
 var firebase_counter = 0;
 //the script that does all the magic
 function initMap() {
@@ -71,6 +74,7 @@ var database = firebase.database();
         console.log("listener works");
           clearWindows();
           setDisplay2.open(map, rec_marker);
+          green_marker = true;
           document.getElementById('station_address').value= dataLocation.markerLocation.restaurantAddress;
           document.getElementById('station_fee').value=  dataLocation.markerLocation.locationCost;
           chosen_marker = rec_marker;
@@ -173,6 +177,7 @@ var database = firebase.database();
   $("#station_submit").click(function () {
     clearWindows();
     clearOverlays();
+    console.log(chosen_marker);
     call_foursquare(chosen_marker);
   });
 
@@ -198,7 +203,7 @@ var database = firebase.database();
     })
     .done(function(aresponse){
       var results =aresponse.response.groups[0].items.length;
-      if (results >= 15){
+      if (results >= 15 && green_marker == false){
         // FIRE BASE Pushes the clicked location to the data base
         // var for location, address, and cost
         var lastLocationLat = marker.position.lat();
@@ -220,12 +225,13 @@ var database = firebase.database();
         var restName = aresponse.response.groups[0].items[i].venue.name;
         var restCat = aresponse.response.groups[0].items[i].venue.categories[0].shortName;
         var restLat = aresponse.response.groups[0].items[i].venue.location.lat;
-        var restLng = aresponse.response.groups[0].items[i].venue.location.lng;  
+        var restLng = aresponse.response.groups[0].items[i].venue.location.lng;
+        var restAdd = aresponse.response.groups[0].items[i].venue.location.address;
         // create new set of markers
         let marker2 = new google.maps.Marker({position:{lat: restLat, lng: restLng}, map: map});
          //post new lat and long to a marker
             //div only being run
-        let contentString2 = "<div><p> Restaurant Name: "+restName+"</p><br><p> Genre: "+restCat+"</p></div>";
+        let contentString2 = "<div><p> Restaurant Name: "+restName+"</p><br><p>Address: "+restAdd+"</p><br><p> Genre: "+restCat+"</p></div>";
         // console.log("BREAKDANCE");
         let setDisplay2 = new google.maps.InfoWindow({
           content: contentString2
